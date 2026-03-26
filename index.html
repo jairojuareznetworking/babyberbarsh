@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabyBerbarsh Oficial</title>
     <style>
-        /* Fondo Animado */
         body {
             margin: 0;
             height: 100vh;
@@ -13,67 +12,118 @@
             justify-content: center;
             align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
             color: white;
             overflow: hidden;
+            /* SE USA EL NOMBRE EXACTO 'verbphoto' */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('verbphoto');
+            background-size: 110% 110%;
+            background-position: center;
+            animation: moveBackground 15s ease-in-out infinite alternate;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes moveBackground {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 40px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            max-width: 85%;
+            animation: fadeIn 1.5s ease;
         }
 
-        /* Foto de tu elección */
-        .profile-pic {
-            width: 200px;
-            height: 200px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo para el video central (VerbsVideo) */
+        .profile-gif {
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
-            border: 5px solid white;
+            border: 5px solid #e73c7e;
             object-fit: cover;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px #e73c7e;
+            animation: glow 3s infinite alternate;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #e73c7e; }
+            to { box-shadow: 0 0 40px #ff4d94, 0 0 10px #23d5ab; }
         }
 
-        .counter {
-            font-size: 1.2rem;
-            margin-top: 20px;
-            background: rgba(0,0,0,0.3);
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: inline-block;
+        h1 { font-size: 2.5rem; margin: 0; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        p { font-size: 1.1rem; color: #ccc; margin-top: 10px; }
+
+        .countdown {
+            font-size: 1.6rem;
+            margin-top: 35px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #eee;
+        }
+
+        .timer {
+            color: #23d5ab;
+            display: block;
+            font-size: 3rem;
+            margin-top: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0 0 15px rgba(35, 213, 171, 0.7);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="https://via.placeholder.com/200" alt="Foto BabyBerbarsh" class="profile-pic">
+        <video autoplay muted loop playsinline class="profile-gif">
+            <source src="VerbsVideo" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
         
         <h1>BabyBerbarsh</h1>
         <p>Club de fans oficial de Verbo</p>
 
-        <div class="counter">
-            Visitas: <span id="count">1,245</span>
+        <div class="countdown">
+            TIEMPO RESTANTE:
+            <span id="timer" class="timer">Cargando...</span>
         </div>
     </div>
+
+    <script>
+        // Cuenta regresiva de 3 años exactos
+        const targetDate = new Date();
+        targetDate.setFullYear(targetDate.getFullYear() + 3);
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('timer').innerHTML = "¡Llegó el momento!";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML = 
+                `${days}d ${hours}h ${mins}m ${secs}s`;
+        }
+
+            setInterval(updateTimer, 1000);
+            updateTimer();
+    </script>
 
 </body>
 </html>
