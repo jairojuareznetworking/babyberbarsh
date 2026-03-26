@@ -14,8 +14,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             overflow: hidden;
-            /* SE USA EL NOMBRE EXACTO 'verbphoto' */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('verbphoto');
+            /* SE USA EL NOMBRE EXACTO CON LA EXTENSIÓN .jpeg */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('verbphoto.jpeg');
             background-size: 110% 110%;
             background-position: center;
             animation: moveBackground 15s ease-in-out infinite alternate;
@@ -43,7 +43,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Estilo para el video central (VerbsVideo) */
         .profile-gif {
             width: 250px;
             height: 250px;
@@ -85,12 +84,12 @@
 
     <div class="container">
         <video autoplay muted loop playsinline class="profile-gif">
-            <source src="VerbsVideo" type="video/mp4">
+            <source src="VerbsVideo.mp4" type="video/mp4">
             Tu navegador no soporta videos.
         </video>
         
         <h1>BabyBerbarsh</h1>
-        <p>Club de fans oficial de Verbo</p>
+        <p>Cortarle las orejas a una mula no lo hace caballo / save the date</p>
 
         <div class="countdown">
             TIEMPO RESTANTE:
@@ -99,7 +98,6 @@
     </div>
 
     <script>
-        // Cuenta regresiva de 3 años exactos
         const targetDate = new Date();
         targetDate.setFullYear(targetDate.getFullYear() + 3);
 
@@ -121,8 +119,8 @@
                 `${days}d ${hours}h ${mins}m ${secs}s`;
         }
 
-            setInterval(updateTimer, 1000);
-            updateTimer();
+        setInterval(updateTimer, 1000);
+        updateTimer();
     </script>
 
 </body>
